@@ -2,9 +2,34 @@
   "name": "franz-clone",
   "version": "1.0.0",
   "description": "A clone of the Franz app",
-  "main": "main.js",
+  "main": "src/main.js",
+  "build": {
+    "productName": "franz-clone",
+    "appId": "jsnulla.franz-clone",
+    "icon": "./build/icon.png",
+    "mac": {
+      "category": "franz-clone.messaging.manager"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "snap",
+        "AppImage"
+      ],
+      "category": "Communication"
+    }
+  },
   "scripts": {
-    "start": "electron .",
+    "start": "ELECTRON_DEV=true electron ./src/main.js",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,13 +42,16 @@
     "messaging",
     "manager"
   ],
-  "author": "Jason Jay Sumagdon Nulla",
+  "author": "Jason Jay Sumagdon Nulla <contact@jsnulla.com> (https://jsnulla.com)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jsnulla/franz-clone/issues"
   },
   "homepage": "https://github.com/jsnulla/franz-clone#readme",
   "devDependencies": {
-    "electron": "^15.3.0"
+    "@types/node": "^16.11.6",
+    "copyfiles": "^2.4.1",
+    "electron": "^15.3.0",
+    "electron-builder": "^22.13.1"
   }
 }
